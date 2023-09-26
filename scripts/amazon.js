@@ -7,14 +7,14 @@ const products = [{
         stars: 4.5,
         count: 87
     },
-    priceCents: 1090
+    priceRupee: 1090
 },
 
 {
     image: 'images/products/intermediate-composite-basketball.jpg',
     name: 'Intermediate Size Basketball',
     rating: { stars: 4, count: 127 },
-    priceCents: 2095
+    priceRupee: 2095
 },
 {
     image: 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
@@ -22,14 +22,16 @@ const products = [{
     rating: {
         stars: 4.5, count: 56
     },
-    priceCents: 799
+    priceRupee: 799
 }];
 
 
+// Combining Generated HTML Together
+let productsHTML = '';
 
 // Generate HTML
 products.forEach((product) => {
-    const html = ` <div class="product-container">
+    productsHTML += ` <div class="product-container">
     <div class="product-image-container">
       <img class="product-image"
         src="${product.image}">
@@ -48,7 +50,7 @@ products.forEach((product) => {
     </div>
 
     <div class="product-price">
-      $${product.priceCents / 100} 
+      ₹${(product.priceRupee / 100).toFixed(2)} 
     </div>
 
     <div class="product-quantity-container">
@@ -77,5 +79,9 @@ products.forEach((product) => {
       Add to Cart
     </button>
   </div>`;
- 
+
 });
+// console.log(productsHTML);
+// Putting The generated and combined HTML of Products on web Page using DOM
+document.querySelector('.js-products-grid')
+    .innerHTML = productsHTML;
