@@ -126,7 +126,19 @@ document.querySelectorAll('.js-add-to-cart')
           quantity: 1
         });
       }
-      console.log(cart);
+      
+      // Calculating cart Quantity to Put it on web page
+      let cartQuantity = 0;
+      cart.forEach((item) => { //loop through each object of cart array 
+        cartQuantity += item.quantity;
+      });
+
+      // Using Dom to show the cart quantity in the cart section
+      document.querySelector('.js-cart-quantity')
+      .innerHTML = cartQuantity;
+
+      // console.log(cartQuantity);
+      // console.log(cart);
       //  console.log(button.dataset.productName) ;
       // console.log('Added Product');
     });
