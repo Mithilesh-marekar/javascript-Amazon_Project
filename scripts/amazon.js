@@ -39,7 +39,7 @@ let productsHTML = '';
 
 // Generate HTML
 products.forEach((product) => {
-    productsHTML += ` <div class="product-container">
+  productsHTML += ` <div class="product-container">
     <div class="product-image-container">
       <img class="product-image"
         src="${product.image}">
@@ -83,7 +83,9 @@ products.forEach((product) => {
       Added
     </div>
 
-    <button class="add-to-cart-button button-primary">
+    <button class="add-to-cart-button
+     button-primary js-add-to-cart"
+     data-product-name="${product.name}">
       Add to Cart
     </button>
   </div>`;
@@ -92,4 +94,22 @@ products.forEach((product) => {
 // console.log(productsHTML);
 // Putting The generated and combined HTML of Products on web Page using DOM
 document.querySelector('.js-products-grid')
-    .innerHTML = productsHTML;
+  .innerHTML = productsHTML;
+
+
+// Using DOM to Make all ADD to Cart buttons Interactive
+document.querySelectorAll('.js-add-to-cart')
+  .forEach((button) => {
+    button.addEventListener('click', () => {
+      // Storing the product name
+      const productName = button.dataset.productName;
+      //  Added the Product to Cart with its quantity
+      cart.push({
+        productName: productName,
+        quantity: 1
+      });
+      console.log(cart);
+      //  console.log(button.dataset.productName) ;
+      // console.log('Added Product');
+    });
+  });
