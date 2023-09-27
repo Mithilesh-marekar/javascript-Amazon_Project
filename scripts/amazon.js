@@ -103,11 +103,29 @@ document.querySelectorAll('.js-add-to-cart')
     button.addEventListener('click', () => {
       // Storing the product name
       const productName = button.dataset.productName;
-      //  Added the Product to Cart with its quantity
-      cart.push({
-        productName: productName,
-        quantity: 1
+
+      // Checking if the product is alredy in the cart
+      // by looping through the cart.
+
+      let matchingItem;
+      cart.forEach((item) => { // this "item" will have the cart "productName" and "quantity";
+        //1- Check if the product is alredy in the cart
+        if (productName === item.productName) {
+          matchingItem = item;
+        }
       });
+      // 2- If its in the cart increase the quantity by 1
+      if (matchingItem) {
+        matchingItem.quantity += 1;
+      }
+      // 3- If its not in the cart just add it to the cart.
+      else {
+        //  Added the Product to Cart with its quantity
+        cart.push({
+          productName: productName,
+          quantity: 1
+        });
+      }
       console.log(cart);
       //  console.log(button.dataset.productName) ;
       // console.log('Added Product');
